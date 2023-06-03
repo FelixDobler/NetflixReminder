@@ -1,12 +1,15 @@
 #!/bin/python
 import asyncio
+import sys
 import os
+import logging
 from dotenv import load_dotenv
 import telegram
-import logging
+
+log_filename=sys.argv[1] # first command line argument
 
 logging.basicConfig(
-    filename='netflixReminder.log',
+    filename=log_filename,
     format='%(asctime)s %(levelname)-8s %(message)s',
     level=logging.INFO,
     datefmt='%Y-%m-%d %H:%M:%S')
