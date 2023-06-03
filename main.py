@@ -23,7 +23,7 @@ async def main():
         logger.info('Sending message: %s', REMINDER_MSG)
         try:
             # await asyncio.sleep(10)
-            await bot.send_message(text=REMINDER_MSG, chat_id=os.getenv('DEBUG_USER_ID'))
+            await bot.send_message(text=REMINDER_MSG, chat_id=os.getenv('GROUP_ID'))
             logger.info('Sent reminder')
         except Exception as ex:
             logger.error('Sending reminder failed: %s', ex)
