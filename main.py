@@ -6,7 +6,7 @@ import logging
 from dotenv import load_dotenv
 import telegram
 
-log_filename=sys.argv[1] # first command line argument
+log_filename = sys.argv[1]  # first command line argument
 
 logging.basicConfig(
     filename=log_filename,
@@ -15,14 +15,15 @@ logging.basicConfig(
     datefmt='%Y-%m-%d %H:%M:%S')
 logger = logging.getLogger(__name__)
 
+REMINDER_MSG = os.getenv('MESSAGE_TEXT')
 
-AMOUNT = 3.6
-REMINDER_MSG = f"Bitte bezahlen:\nhttps://www.paypal.com/paypalme/FelixDobler/{AMOUNT}"
 
 async def main():
+    """
+    Sends a message to a telegram channel the bot is member of
+    """
     bot = telegram.Bot(os.getenv('TELEGRAM_API_TOKEN'))
     async with bot:
-
         logger.info('Sending message: %s', REMINDER_MSG)
         try:
             # await asyncio.sleep(10)
@@ -30,7 +31,6 @@ async def main():
             logger.info('Sent reminder')
         except Exception as ex:
             logger.error('Sending reminder failed: %s', ex)
-
 
 if __name__ == '__main__':
     load_dotenv()
