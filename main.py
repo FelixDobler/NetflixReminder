@@ -20,13 +20,12 @@ REMINDER_MSG = os.getenv('MESSAGE_TEXT')
 
 async def main():
     """
-    Sends a message to a telegram channel the bot is member of
+    Sends a message to a telegram channel the bot is a member of
     """
     bot = telegram.Bot(os.getenv('TELEGRAM_API_TOKEN'))
     async with bot:
         logger.info('Sending message: %s', REMINDER_MSG)
         try:
-            # await asyncio.sleep(10)
             await bot.send_message(text=REMINDER_MSG, chat_id=os.getenv('GROUP_ID'))
             logger.info('Sent reminder')
         except Exception as ex:
